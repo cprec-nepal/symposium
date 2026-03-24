@@ -23,20 +23,11 @@
   </script>
   
   <style>
-    :root {
-      --bg: #0f172a; --bg-light: #f8fafc; --fg: #f8fafc; --fg-dark: #0f172a;
-      --accent: #0ea5e9; --accent-dark: #0284c7; --secondary: #8b5cf6;
-      --card: rgba(255, 255, 255, 0.95);
-    }
+    :root { --bg: #0f172a; --bg-light: #f8fafc; --fg: #f8fafc; --fg-dark: #0f172a; --accent: #0ea5e9; --accent-dark: #0284c7; --secondary: #8b5cf6; --card: rgba(255, 255, 255, 0.95); }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--fg-dark); overflow-x: hidden; }
     .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative; overflow: hidden; }
-    .hero-gradient::before {
-      content: ''; position: absolute; inset: 0;
-      background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-      z-index: 0;
-    }
+    .hero-gradient::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%); z-index: 0; }
     .glass-card { background: var(--card); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border-radius: 24px; }
     .form-input { width: 100%; padding: 0.875rem 1rem; background: rgba(15, 23, 42, 0.04); border: 2px solid rgba(15, 23, 42, 0.1); border-radius: 12px; font-size: 0.95rem; color: var(--fg-dark); transition: all 0.2s; }
     .form-input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1); }
@@ -365,7 +356,7 @@
 
   <script>
     // ==================================================
-    // IMPORTANT: REPLACE THE URL BELOW WITH YOUR DEPLOYED WEB APP URL
+    // CRITICAL: PASTE YOUR NEW DEPLOYED URL HERE
     // ==================================================
     const API_URL = "https://script.google.com/macros/s/AKfycbyHOYEFy6dHNwLbJMxovOmr7SpnLnit9DcFP0PsiuI1Fk4Avpl-U6KJGIYI7mhMOcuIJw/exec";
     // ==================================================
@@ -390,12 +381,9 @@
     function validateStep(stepIndex) {
       const container = steps[stepIndex];
       let valid = true;
-
-      // Reset errors
       container.querySelectorAll('.form-input').forEach(input => input.classList.remove('error'));
       container.querySelectorAll('.phone-prefix').forEach(prefix => prefix.classList.remove('error'));
       container.querySelectorAll('.error-msg').forEach(msg => msg.style.display = 'none');
-
       const inputs = container.querySelectorAll('input[required], select[required]');
       inputs.forEach(input => {
         if (!input.value.trim()) {
@@ -407,8 +395,6 @@
           valid = false;
         }
       });
-
-      // Phone Validation
       if (stepIndex === 0 || stepIndex === 2) {
         const phoneInput = container.querySelector('input[name="phone"], input[name="emergencyPhone"]');
         if (phoneInput && phoneInput.value) {
@@ -416,46 +402,33 @@
           const errId = stepIndex === 0 ? 'phone-error' : 'emergency-phone-error';
           const errEl = document.getElementById(errId);
           const prefix = phoneInput.closest('.phone-wrapper').querySelector('.phone-prefix');
-          
           if (digits.length !== 10 || digits.charAt(0) !== '9') {
-            phoneInput.classList.add('error');
-            prefix.classList.add('error');
+            phoneInput.classList.add('error'); prefix.classList.add('error');
             if(errEl) { errEl.style.display = 'block'; }
             valid = false;
-          } else {
-            phoneInput.value = digits; 
-          }
+          } else { phoneInput.value = digits; }
         }
       }
-
-      // DOB Validation
       if (stepIndex === 0) {
         const dobInput = container.querySelector('input[name="dob"]');
         if (dobInput && dobInput.value) {
           const dob = new Date(dobInput.value);
-          const today = new Date();
-          today.setHours(0,0,0,0); 
+          const today = new Date(); today.setHours(0,0,0,0);
           const errEl = document.getElementById('dob-error');
           if (isNaN(dob.getTime()) || dob >= today) {
-             dobInput.classList.add('error');
-             if(errEl) { errEl.style.display = 'block'; }
-             valid = false;
+             dobInput.classList.add('error'); if(errEl) { errEl.style.display = 'block'; } valid = false;
           }
         }
       }
-
       if (!valid) alert("Please correct the highlighted fields.");
       return valid;
     }
 
     function nextPrev(n) {
       if (n === 1 && !validateStep(currentStep)) return;
-
       steps[currentStep].classList.remove('active');
       currentStep += n;
-      
       if (currentStep >= steps.length) { submitForm(); return; }
-      
       steps[currentStep].classList.add('active');
       updateProgressBar();
       prevBtn.classList.toggle('hidden', currentStep === 0);
@@ -476,24 +449,31 @@
 
       if(API_URL.includes("YOUR_DEPLOYED_WEB_APP_URL_HERE")) {
         alert("ERROR: You must update the API_URL in the HTML code with your deployed Script URL.");
-        nextBtn.disabled = false;
-        nextBtn.textContent = "Submit Registration";
-        return;
+        nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; return;
       }
 
+      // Using a more robust fetch approach
       fetch(API_URL, {
         method: 'POST',
+        mode: 'cors', // Explicitly set mode
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ type: 'registerSymposium', data: data })
       })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
       .then(res => {
         if(res.success) { document.getElementById('uploadModal').classList.remove('hidden'); } 
         else { alert("Error: " + res.message); nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; }
       })
-      .catch(err => { console.error(err); alert("Network Error."); nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; });
+      .catch(err => { 
+        console.error("Fetch Error:", err);
+        alert("Network Error: Could not connect to server. Please check your internet connection and ensure the Web App URL is correct."); 
+        nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; 
+      });
     }
 
-    // FILE UPLOAD LOGIC
     let selectedFile = null;
     document.getElementById('fileInput').addEventListener('change', function(e) {
       selectedFile = e.target.files[0];
@@ -525,6 +505,7 @@
            try {
              const res = await fetch(API_URL, { 
                method: 'POST',
+               mode: 'cors',
                headers: { 'Content-Type': 'application/json' },
                body: JSON.stringify({
                  type: 'uploadVoucher',
@@ -536,14 +517,14 @@
              if(result.success) {
                alert("Upload successful!");
                document.getElementById('uploadModal').classList.add('hidden');
-               window.location.reload(); // Refresh form
+               window.location.reload(); 
              } else {
                alert("Error: " + (result.message || "Failed"));
                this.textContent = "Upload & Finish";
                this.disabled = false;
              }
            } catch (error) {
-             alert("Connection failed.");
+             alert("Connection failed during upload.");
              this.textContent = "Upload & Finish";
              this.disabled = false;
            }
