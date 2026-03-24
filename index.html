@@ -95,22 +95,25 @@
     .glimpse-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     .hidden { display: none !important; }
     
-    /* Phone Input Fix */
-    .phone-wrapper { display: flex; align-items: center; }
+    /* Phone Input & Validation Styles */
+    .phone-wrapper { display: flex; align-items: stretch; }
     .phone-prefix {
       background: rgba(15, 23, 42, 0.08); 
       border: 2px solid rgba(15, 23, 42, 0.1); 
       border-right: none;
       border-radius: 12px 0 0 12px;
       padding: 0.875rem 1rem;
+      display: flex;
+      align-items: center;
       font-weight: 600;
       color: #64748b;
       user-select: none;
     }
     .phone-wrapper input { border-radius: 0 12px 12px 0; border-left: none; }
     
-    .error-msg { color: #ef4444; font-size: 0.8rem; margin-top: 0.25rem; display: none; }
-    .form-input.error { border-color: #ef4444; }
+    .form-input.error { border-color: #ef4444 !important; background-color: rgba(254, 226, 226, 0.2) !important; }
+    .phone-prefix.error { border-color: #ef4444 !important; background-color: rgba(254, 226, 226, 0.4) !important; }
+    .error-msg { color: #dc2626; font-size: 0.8rem; margin-top: 0.25rem; display: none; font-weight: 500; }
   </style>
 </head>
 <body>
@@ -294,20 +297,20 @@
 
         <form id="registrationForm" onsubmit="return false;">
           
-          <!-- STEP 1 -->
+          <!-- STEP 1: Personal Details -->
           <div class="form-step active" id="step-1">
             <h3 class="font-display text-xl font-bold mb-6">Personal Details</h3>
             <div class="space-y-4">
               <div><label>Full Name *</label><input type="text" name="fullName" class="form-input" placeholder="Your full name" required /></div>
               
-              <!-- Phone with +977 Fixed -->
+              <!-- Phone Input with +977 -->
               <div>
                 <label>Contact Number *</label>
                 <div class="phone-wrapper">
-                  <div class="phone-prefix">+977</div>
-                  <input type="tel" name="phone" class="form-input" placeholder="98XXXXXXXX" required maxlength="10" pattern="[0-9]{10}" />
+                  <div class="phone-prefix" id="phone-prefix-1">+977</div>
+                  <input type="tel" name="phone" class="form-input" placeholder="98XXXXXXXX" required maxlength="10" />
                 </div>
-                <p class="error-msg" id="phone-error">Must be exactly 10 digits (e.g., 9841000000)</p>
+                <p class="error-msg" id="phone-error">Must be 10 digits starting with 9.</p>
               </div>
               
               <div><label>Email Address *</label><input type="email" name="email" class="form-input" placeholder="you@example.com" required /></div>
@@ -316,14 +319,14 @@
                 <div>
                   <label>Date of Birth *</label>
                   <input type="date" name="dob" class="form-input" required />
-                  <p class="error-msg" id="dob-error">Date must be in the past</p>
+                  <p class="error-msg" id="dob-error">Date must be in the past.</p>
                 </div>
                 <div><label>Gender *</label><select name="gender" class="form-input" required><option value="">Select</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></div>
               </div>
             </div>
           </div>
 
-          <!-- STEP 2 -->
+          <!-- STEP 2: Academic Details -->
           <div class="form-step" id="step-2">
             <h3 class="font-display text-xl font-bold mb-6">Academic Details</h3>
             <div class="space-y-4">
@@ -339,27 +342,27 @@
             </div>
           </div>
 
-          <!-- STEP 3 -->
+          <!-- STEP 3: Emergency Contact -->
           <div class="form-step" id="step-3">
             <h3 class="font-display text-xl font-bold mb-6">Emergency Contact</h3>
             <div class="space-y-4">
               <div><label>Emergency Contact Name *</label><input type="text" name="emergencyName" class="form-input" required /></div>
               
-              <!-- Emergency Phone with +977 -->
+              <!-- Emergency Phone Input -->
               <div>
                 <label>Emergency Contact No. *</label>
                 <div class="phone-wrapper">
-                  <div class="phone-prefix">+977</div>
+                  <div class="phone-prefix" id="phone-prefix-2">+977</div>
                   <input type="tel" name="emergencyPhone" class="form-input" placeholder="98XXXXXXXX" required maxlength="10" />
                 </div>
-                <p class="error-msg" id="emergency-phone-error">Must be exactly 10 digits</p>
+                <p class="error-msg" id="emergency-phone-error">Must be 10 digits starting with 9.</p>
               </div>
               
               <div><label>Relation *</label><select name="emergencyRelation" class="form-input" required><option value="">Select Relation</option><option value="Father">Father</option><option value="Mother">Mother</option><option value="Brother">Brother</option><option value="Sister">Sister</option><option value="Friend">Friend</option></select></div>
             </div>
           </div>
 
-          <!-- STEP 4 -->
+          <!-- STEP 4: Payment Details -->
           <div class="form-step" id="step-4">
             <h3 class="font-display text-xl font-bold mb-6">Payment Details</h3>
             <div class="bg-slate-50 rounded-xl p-5 mb-6 text-sm border border-slate-200">
@@ -462,60 +465,87 @@
       });
     }
 
-    // VALIDATION FUNCTION
+    // ===== IMPROVED VALIDATION FUNCTION =====
     function validateStep(stepIndex) {
       const container = steps[stepIndex];
       let valid = true;
 
-      // Reset errors
-      container.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
-      container.querySelectorAll('.error-msg').forEach(el => el.style.display = 'none');
+      // 1. Reset all errors in this step
+      container.querySelectorAll('.form-input').forEach(input => input.classList.remove('error'));
+      container.querySelectorAll('.phone-prefix').forEach(prefix => prefix.classList.remove('error'));
+      container.querySelectorAll('.error-msg').forEach(msg => msg.style.display = 'none');
 
-      // 1. Check required fields
+      // 2. Check Required Fields
       const inputs = container.querySelectorAll('input[required], select[required]');
       inputs.forEach(input => {
         if (!input.value.trim()) {
           input.classList.add('error');
+          // Highlight prefix if phone is empty
+          if(input.name === 'phone' || input.name === 'emergencyPhone') {
+             const wrapper = input.closest('.phone-wrapper');
+             if(wrapper) wrapper.querySelector('.phone-prefix').classList.add('error');
+          }
           valid = false;
         }
       });
 
-      // 2. Phone Validation (Step 1 & 3)
+      // 3. Specific Validation: Phone Numbers (Step 1 & 3)
       if (stepIndex === 0 || stepIndex === 2) {
         const phoneInput = container.querySelector('input[name="phone"], input[name="emergencyPhone"]');
         if (phoneInput && phoneInput.value) {
           const digits = phoneInput.value.replace(/\D/g, '');
+          const errId = stepIndex === 0 ? 'phone-error' : 'emergency-phone-error';
+          const errEl = document.getElementById(errId);
+          const prefix = phoneInput.closest('.phone-wrapper').querySelector('.phone-prefix');
+          
+          // Check: Must be 10 digits AND start with 9 (Nepal Mobile)
           if (digits.length !== 10) {
             phoneInput.classList.add('error');
-            const errId = stepIndex === 0 ? 'phone-error' : 'emergency-phone-error';
-            const errEl = document.getElementById(errId);
-            if (errEl) errEl.style.display = 'block';
+            prefix.classList.add('error');
+            if(errEl) { errEl.textContent = "Must be exactly 10 digits."; errEl.style.display = 'block'; }
+            valid = false;
+          } else if (digits.charAt(0) !== '9') {
+            phoneInput.classList.add('error');
+            prefix.classList.add('error');
+            if(errEl) { errEl.textContent = "Nepal mobile numbers start with 9."; errEl.style.display = 'block'; }
             valid = false;
           } else {
-            phoneInput.value = digits; // Clean format
+            phoneInput.value = digits; // Clean value
           }
         }
       }
 
-      // 3. Date Validation (Step 1)
+      // 4. Specific Validation: Date of Birth (Step 1)
       if (stepIndex === 0) {
         const dobInput = container.querySelector('input[name="dob"]');
         if (dobInput && dobInput.value) {
           const dob = new Date(dobInput.value);
           const today = new Date();
-          if (dob >= today) {
-            dobInput.classList.add('error');
-            document.getElementById('dob-error').style.display = 'block';
-            valid = false;
+          today.setHours(0,0,0,0); // Compare dates only
+          
+          const errEl = document.getElementById('dob-error');
+
+          if (isNaN(dob.getTime())) {
+             dobInput.classList.add('error');
+             if(errEl) { errEl.textContent = "Invalid date format."; errEl.style.display = 'block'; }
+             valid = false;
+          }
+          else if (dob >= today) {
+             dobInput.classList.add('error');
+             if(errEl) { errEl.textContent = "Date must be in the past."; errEl.style.display = 'block'; }
+             valid = false;
           }
         }
       }
 
-      if (!valid) alert("Please correct the highlighted fields.");
+      if (!valid) {
+        alert("Please correct the highlighted fields.");
+      }
       return valid;
     }
 
     function nextPrev(n) {
+      // Validate only when moving Next
       if (n === 1 && !validateStep(currentStep)) return;
 
       steps[currentStep].classList.remove('active');
@@ -535,7 +565,7 @@
       const data = {};
       formData.forEach((value, key) => data[key] = value);
       
-      // Append +977 to phones
+      // Append +977 to phones for backend
       data.phone = "+977" + data.phone;
       data.emergencyPhone = "+977" + data.emergencyPhone;
 
@@ -554,7 +584,7 @@
       .catch(err => { console.error(err); alert("Network Error."); nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; });
     }
 
-    // FILE UPLOAD
+    // FILE UPLOAD LOGIC
     let selectedFile = null;
     document.getElementById('fileInput').addEventListener('change', function(e) {
       selectedFile = e.target.files[0];
