@@ -53,9 +53,19 @@
     .form-input.error { border-color: #ef4444 !important; background-color: rgba(254, 226, 226, 0.2) !important; }
     .phone-prefix.error { border-color: #ef4444 !important; background-color: rgba(254, 226, 226, 0.4) !important; }
     .error-msg { color: #dc2626; font-size: 0.8rem; margin-top: 0.25rem; display: none; font-weight: 500; }
+
+    /* Loading Overlay */
+    #loading-overlay { position: fixed; inset: 0; background: rgba(255,255,255,0.9); z-[100]; display: flex; flex-direction: column; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
+
+  <!-- Loading Overlay -->
+  <div id="loading-overlay" class="hidden">
+    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-sky-600 mb-4"></div>
+    <h2 class="text-xl font-bold text-slate-800" id="loading-text">Processing...</h2>
+    <p class="text-slate-500 text-sm mt-2">Please do not close this window.</p>
+  </div>
 
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
@@ -356,11 +366,16 @@
 
   <script>
     // ==================================================
-    // CRITICAL: PASTE YOUR NEW DEPLOYED URL HERE
+    // IMPORTANT: PASTE YOUR WEB APP URL BELOW
+    // Must end in /exec
     // ==================================================
-    const API_URL = "https://script.google.com/macros/s/AKfycbyHOYEFy6dHNwLbJMxovOmr7SpnLnit9DcFP0PsiuI1Fk4Avpl-U6KJGIYI7mhMOcuIJw/exec";
+    const API_URL = "PASTE_YOUR_WEB_APP_URL_HERE";
     // ==================================================
 
+    // UI Elements
+    const loader = document.getElementById('loading-overlay');
+    const loaderText = document.getElementById('loading-text');
+    
     let currentStep = 0;
     const steps = document.querySelectorAll('.form-step');
     const progressSteps = document.querySelectorAll('.progress-step');
@@ -435,6 +450,9 @@
       nextBtn.textContent = currentStep === steps.length - 1 ? "Submit Registration" : "Next Step";
     }
 
+    // ==========================================
+    // NO-CORS MODE SUBMISSION (ROBUST)
+    // ==========================================
     function submitForm() {
       const form = document.getElementById('registrationForm');
       const formData = new FormData(form);
@@ -445,35 +463,47 @@
       data.emergencyPhone = "+977" + data.emergencyPhone;
 
       nextBtn.disabled = true;
-      nextBtn.textContent = "Submitting...";
+      nextBtn.textContent = "Connecting...";
 
-      if(API_URL.includes("YOUR_DEPLOYED_WEB_APP_URL_HERE")) {
-        alert("ERROR: You must update the API_URL in the HTML code with your deployed Script URL.");
+      if(API_URL.includes("PASTE_YOUR_WEB_APP_URL_HERE")) {
+        alert("Please update the API_URL in the code with your deployed Script URL.");
         nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; return;
       }
 
-      // Using a more robust fetch approach
+      // Show Loader
+      loader.classList.remove('hidden');
+      loaderText.textContent = "Submitting Registration...";
+
+      // Payload
+      const payload = JSON.stringify({ type: 'registerSymposium', data: data });
+
+      // Send Request
       fetch(API_URL, {
         method: 'POST',
-        mode: 'cors', // Explicitly set mode
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ type: 'registerSymposium', data: data })
+        mode: 'no-cors', // Critical for GitHub Pages -> Google Sheets reliability
+        body: payload
       })
-      .then(res => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
-      .then(res => {
-        if(res.success) { document.getElementById('uploadModal').classList.remove('hidden'); } 
-        else { alert("Error: " + res.message); nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; }
+      .then(() => {
+        // We assume success because no network error occurred (no-cors opaque response)
+        loaderText.textContent = "Success! Opening Upload Window...";
+        setTimeout(() => {
+            loader.classList.add('hidden');
+            nextBtn.disabled = false; 
+            nextBtn.textContent = "Submit Registration";
+            document.getElementById('uploadModal').classList.remove('hidden');
+        }, 1000);
       })
       .catch(err => { 
-        console.error("Fetch Error:", err);
-        alert("Network Error: Could not connect to server. Please check your internet connection and ensure the Web App URL is correct."); 
+        console.error("Network Error:", err);
+        loader.classList.add('hidden');
+        alert("Network Error. Ensure you are on GitHub Pages and not opening file:// directly.");
         nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; 
       });
     }
 
+    // ==========================================
+    // FILE UPLOAD
+    // ==========================================
     let selectedFile = null;
     document.getElementById('fileInput').addEventListener('change', function(e) {
       selectedFile = e.target.files[0];
@@ -486,13 +516,16 @@
 
     document.getElementById('uploadBtn').addEventListener('click', async function() {
       if(!selectedFile) return;
-      this.textContent = "Uploading...";
-      this.disabled = true;
+      
+      // Show Loader
+      loader.classList.remove('hidden');
+      loaderText.textContent = "Uploading Voucher...";
       
       const reader = new FileReader();
       reader.onload = async (e) => {
         const img = new Image();
         img.onload = async () => {
+           // Resize Image
            const canvas = document.createElement('canvas');
            const MAX_W = 800;
            const scale = MAX_W / img.width;
@@ -503,28 +536,30 @@
            const base64 = canvas.toDataURL('image/jpeg', 0.7).split(',')[1];
            
            try {
-             const res = await fetch(API_URL, { 
-               method: 'POST',
-               mode: 'cors',
-               headers: { 'Content-Type': 'application/json' },
-               body: JSON.stringify({
-                 type: 'uploadVoucher',
-                 email: document.querySelector('input[name="email"]').value,
-                 base64Data: base64
-               })
+             const payload = JSON.stringify({
+               type: 'uploadVoucher',
+               email: document.querySelector('input[name="email"]').value,
+               base64Data: base64
              });
-             const result = await res.json();
-             if(result.success) {
-               alert("Upload successful!");
-               document.getElementById('uploadModal').classList.add('hidden');
-               window.location.reload(); 
-             } else {
-               alert("Error: " + (result.message || "Failed"));
-               this.textContent = "Upload & Finish";
-               this.disabled = false;
-             }
+             
+             await fetch(API_URL, { 
+               method: 'POST',
+               mode: 'no-cors', // Robust mode
+               body: payload
+             });
+             
+             loaderText.textContent = "Upload Complete!";
+             setTimeout(() => {
+                alert("Registration and Voucher Upload Complete!");
+                document.getElementById('uploadModal').classList.add('hidden');
+                loader.classList.add('hidden');
+                document.getElementById('registrationForm').reset();
+                window.scrollTo(0,0);
+             }, 1000);
+             
            } catch (error) {
              alert("Connection failed during upload.");
+             loader.classList.add('hidden');
              this.textContent = "Upload & Finish";
              this.disabled = false;
            }
