@@ -90,6 +90,7 @@
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
       color: white; font-family: 'Space Grotesk', sans-serif; font-weight: 600;
       border-radius: 12px; border: none; cursor: pointer;
+      border-radius: 12px; border: none; cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.25); }
@@ -146,9 +147,9 @@
   <!-- Navigation -->
   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <a href="#top" class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center text-white font-bold text-sm">C</div>
-        <span class="font-display font-bold text-slate-800">CPREC Nepal</span>
+      <a href="#top" class="flex items-center gap-3">
+        <!-- Updated Logo -->
+        <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/CPREC%20Nepal.png" alt="CPREC Nepal Logo" class="h-10 w-auto object-contain">
       </a>
       <div class="flex items-center gap-2 sm:gap-4">
         <a href="#about" class="text-sm font-medium text-slate-600 hover:text-sky-600 hidden sm:block">About</a>
@@ -347,11 +348,11 @@
           </div>
         </div>
 
-        <!-- Image/Visual Placeholder & Conclusion -->
+        <!-- Image & Conclusion -->
         <div class="space-y-6">
            <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-200 h-64 flex items-center justify-center relative">
-              <!-- Replace src below with your actual image URL -->
-              <img src="https://placehold.co/600x400/1e293b/ffffff?text=ARMS+Symposium+Photo" alt="Symposium Highlight" class="w-full h-full object-cover opacity-80">
+              <!-- Updated ARMS Image URL -->
+              <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/ARMS.jpg" alt="Symposium Highlight" class="w-full h-full object-cover">
               <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent p-4">
                  <p class="text-white text-xs font-medium">Sunway College, Maitidevi, Kathmandu</p>
               </div>
@@ -373,7 +374,7 @@
          <div class="flex items-center gap-3">
             <div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center font-bold">A</div>
             <div>
-               <p class="font-bold text-white">Participant Testimonial</p>
+               <p class="font-bold text-white">Mr. Samir Sapkota</p>
                <p class="text-sm text-slate-400">ARMS Symposium Attendee</p>
             </div>
          </div>
@@ -542,10 +543,8 @@
                     <p class="text-slate-600"><strong>Bank:</strong> Nabil Bank<br/>A/c: 09810017526638<br/><span class="text-xs">(Manish Thapaliya)</span></p>
                  </div>
                  <div class="flex-shrink-0 text-center">
-                    <!-- REPLACE THIS DIV WITH AN IMG TAG FOR YOUR QR CODE -->
-                    <div class="w-32 h-32 bg-white border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center text-slate-400 text-xs font-bold mx-auto">
-                       QR Code
-                    </div>
+                    <!-- Updated QR Code URL -->
+                    <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/QR.jpeg" alt="Payment QR" class="w-32 h-32 object-contain rounded-lg mx-auto border shadow-sm">
                  </div>
               </div>
               <p class="text-xs text-rose-600 mt-4 font-medium">* Amount paid is non-refundable.</p>
@@ -615,7 +614,9 @@
   <footer class="bg-slate-900 text-white py-16 px-4">
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
       <div>
-        <h3 class="font-display text-xl font-bold mb-4">CPREC Nepal</h3>
+        <div class="flex items-center gap-3 mb-4">
+             <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/CPREC%20Nepal.png" alt="CPREC Logo" class="h-10 w-auto brightness-200"> <!-- Brightness for visibility on dark bg -->
+        </div>
         <p class="text-slate-400 text-sm leading-relaxed mb-6">
           A youth-led, non-partisan organization with a proven track record of impact in health policy and leadership.
         </p>
@@ -644,8 +645,7 @@
     // ==========================================
     // CONFIGURATION
     // ==========================================
-    // PASTE YOUR GOOGLE APPS SCRIPT WEB APP URL HERE
-    const API_URL = "https://script.google.com/macros/s/AKfycbwBp8tXJVHYTsGZRfMcnt8LNOigLZ_HScLdXDxnIpUowx9ddVrEyhoUyp5ud6CMlfssww/exec"; 
+    const API_URL = "https://script.google.com/macros/s/AKfycbwBp8tXJVHYTsGZRfMcnt8LNOigLZ_HScLdXDxnIpUowx9ddVrEyhoUyp5ud6CMlfssww/exec";
 
     // ==========================================
     // MULTI-STEP FORM LOGIC
@@ -716,14 +716,6 @@
       nextBtn.disabled = true;
       nextBtn.textContent = "Submitting...";
 
-      // Check if API URL is set
-      if(API_URL === "https://script.google.com/macros/s/AKfycbwBp8tXJVHYTsGZRfMcnt8LNOigLZ_HScLdXDxnIpUowx9ddVrEyhoUyp5ud6CMlfssww/exec" || !API_URL) {
-         alert("Configuration Error: The developer needs to set the API_URL in the code.");
-         nextBtn.disabled = false;
-         nextBtn.textContent = "Submit Registration";
-         return;
-      }
-      
       // Send data to server
       fetch(API_URL, {
         method: 'POST',
