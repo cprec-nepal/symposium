@@ -6,7 +6,6 @@
   <title>Pharmacy in Health Policy Symposium | CPREC Nepal</title>
   <meta name="description" content="Empowering Future Leaders for Evidence-Based Change. Join the symposium organized by CPREC Nepal.">
   
-  <!-- Fonts & Tailwind -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
@@ -34,111 +33,66 @@
       --accent-dark: #0284c7;
       --secondary: #8b5cf6;
       --card: rgba(255, 255, 255, 0.95);
-      --card-dark: rgba(15, 23, 42, 0.95);
     }
 
     html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--fg-dark); overflow-x: hidden; }
 
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-light);
-      color: var(--fg-dark);
-      overflow-x: hidden;
-    }
-
-    /* Hero Gradient */
     .hero-gradient {
       background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
       position: relative;
       overflow: hidden;
     }
-    
     .hero-gradient::before {
-      content: '';
-      position: absolute; inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
                   radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
       z-index: 0;
     }
 
-    /* Glassmorphism Card */
     .glass-card {
-      background: var(--card);
-      backdrop-filter: blur(10px);
+      background: var(--card); backdrop-filter: blur(10px);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
       border-radius: 24px;
     }
 
-    /* Form Inputs */
     .form-input {
       width: 100%; padding: 0.875rem 1rem;
       background: rgba(15, 23, 42, 0.04);
       border: 2px solid rgba(15, 23, 42, 0.1);
-      border-radius: 12px;
-      font-size: 0.95rem; color: var(--fg-dark);
+      border-radius: 12px; font-size: 0.95rem; color: var(--fg-dark);
       transition: all 0.2s;
     }
     .form-input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1); }
-    
     label { display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #475569; }
     
-    /* Buttons */
     .btn-primary {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
       padding: 1rem 2rem;
       background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
       color: white; font-family: 'Space Grotesk', sans-serif; font-weight: 600;
       border-radius: 12px; border: none; cursor: pointer;
-      border-radius: 12px; border: none; cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.25); }
     
-    .btn-secondary {
-      background: transparent; color: white;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      padding: 1rem 2rem; border-radius: 12px; font-weight: 600; cursor: pointer;
-      transition: all 0.2s;
-    }
+    .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.3); padding: 1rem 2rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
     .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
-    .btn-ghost {
-      background: transparent; color: var(--fg-dark);
-      border: 2px solid rgba(15, 23, 42, 0.1);
-      padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 600; cursor: pointer;
-      transition: all 0.2s;
-    }
+    .btn-ghost { background: transparent; color: var(--fg-dark); border: 2px solid rgba(15, 23, 42, 0.1); padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-    /* Timeline */
-    .timeline-item::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #e2e8f0;
-    }
-    .timeline-item::after {
-      content: ''; position: absolute; left: -4px; top: 6px; width: 10px; height: 10px;
-      background: var(--accent); border-radius: 50%; border: 2px solid white;
-    }
-
-    /* Multi-step Form */
     .form-step { display: none; animation: fadeIn 0.4s ease; }
     .form-step.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-    /* Progress Bar */
     .progress-step { transition: all 0.3s; }
     .progress-step.active { background: var(--accent); color: white; }
     .progress-step.completed { background: #10b981; color: white; }
 
-    /* Glimpse Section Specifics */
-    .glimpse-card {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .glimpse-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-
+    .glimpse-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .glimpse-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     .hidden { display: none !important; }
   </style>
 </head>
@@ -148,7 +102,6 @@
   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-200">
     <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
       <a href="#top" class="flex items-center gap-3">
-        <!-- Updated Logo -->
         <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/CPREC%20Nepal.png" alt="CPREC Nepal Logo" class="h-10 w-auto object-contain">
       </a>
       <div class="flex items-center gap-2 sm:gap-4">
@@ -177,9 +130,7 @@
         <a href="#register" class="btn-primary text-lg px-8 py-4 bg-white text-slate-900 hover:bg-slate-100" style="background: white; color: #0f172a;">
           Register Now
         </a>
-        <a href="#about" class="btn-secondary">
-          Learn More
-        </a>
+        <a href="#about" class="btn-secondary">Learn More</a>
       </div>
     </div>
   </header>
@@ -187,22 +138,10 @@
   <!-- Stats Section -->
   <section class="py-12 bg-white border-b border-slate-100">
     <div class="max-w-5xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-      <div>
-        <div class="text-3xl font-bold text-sky-600">2000+</div>
-        <div class="text-sm text-slate-500">Students Reached</div>
-      </div>
-      <div>
-        <div class="text-3xl font-bold text-sky-600">80+</div>
-        <div class="text-sm text-slate-500">Youth Trained</div>
-      </div>
-      <div>
-        <div class="text-3xl font-bold text-sky-600">4</div>
-        <div class="text-sm text-slate-500">Key Sessions</div>
-      </div>
-      <div>
-        <div class="text-3xl font-bold text-sky-600">1</div>
-        <div class="text-sm text-slate-500">Day Event</div>
-      </div>
+      <div><div class="text-3xl font-bold text-sky-600">2000+</div><div class="text-sm text-slate-500">Students Reached</div></div>
+      <div><div class="text-3xl font-bold text-sky-600">80+</div><div class="text-sm text-slate-500">Youth Trained</div></div>
+      <div><div class="text-3xl font-bold text-sky-600">4</div><div class="text-sm text-slate-500">Key Sessions</div></div>
+      <div><div class="text-3xl font-bold text-sky-600">1</div><div class="text-sm text-slate-500">Day Event</div></div>
     </div>
   </section>
 
@@ -227,28 +166,19 @@
               <div class="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600 flex-shrink-0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
               </div>
-              <div>
-                <h4 class="font-bold text-slate-800">Promote Youth Leadership</h4>
-                <p class="text-sm text-slate-500">Empower students to move into policymaking.</p>
-              </div>
+              <div><h4 class="font-bold text-slate-800">Promote Youth Leadership</h4><p class="text-sm text-slate-500">Empower students to move into policymaking.</p></div>
             </div>
             <div class="flex gap-4">
               <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
               </div>
-              <div>
-                <h4 class="font-bold text-slate-800">Enhance Advocacy Skills</h4>
-                <p class="text-sm text-slate-500">Educate on antibiotic resistance & medication safety.</p>
-              </div>
+              <div><h4 class="font-bold text-slate-800">Enhance Advocacy Skills</h4><p class="text-sm text-slate-500">Educate on antibiotic resistance & medication safety.</p></div>
             </div>
             <div class="flex gap-4">
               <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
               </div>
-              <div>
-                <h4 class="font-bold text-slate-800">Build Research Capacity</h4>
-                <p class="text-sm text-slate-500">Training in Methodology and Data Analysis.</p>
-              </div>
+              <div><h4 class="font-bold text-slate-800">Build Research Capacity</h4><p class="text-sm text-slate-500">Training in Methodology and Data Analysis.</p></div>
             </div>
           </div>
         </div>
@@ -263,49 +193,28 @@
         <span class="text-sky-600 font-bold text-sm uppercase tracking-widest">Program</span>
         <h2 class="font-display text-3xl font-bold mt-2">Interactive Program Agenda</h2>
       </div>
-      
       <div class="space-y-8 relative">
-        <!-- Item 1 -->
         <div class="flex gap-6">
           <div class="w-16 h-16 rounded-2xl bg-sky-600 text-white flex items-center justify-center font-bold text-xl flex-shrink-0">I</div>
-          <div class="glass-card p-6 flex-1">
-            <span class="text-xs font-bold text-sky-600 uppercase">Foundations</span>
-            <h3 class="font-display font-bold text-lg mt-1">Health Policy 101</h3>
-            <p class="text-slate-500 text-sm mt-2">Introduction to evidence-based policymaking in Nepal.</p>
-          </div>
+          <div class="glass-card p-6 flex-1"><span class="text-xs font-bold text-sky-600 uppercase">Foundations</span><h3 class="font-display font-bold text-lg mt-1">Health Policy 101</h3><p class="text-slate-500 text-sm mt-2">Introduction to evidence-based policymaking in Nepal.</p></div>
         </div>
-        <!-- Item 2 -->
         <div class="flex gap-6">
           <div class="w-16 h-16 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-bold text-xl flex-shrink-0">II</div>
-          <div class="glass-card p-6 flex-1">
-            <span class="text-xs font-bold text-emerald-600 uppercase">Advocacy</span>
-            <h3 class="font-display font-bold text-lg mt-1">The Pharmacist’s Voice</h3>
-            <p class="text-slate-500 text-sm mt-2">Strategies for public health advocacy and medication safety.</p>
-          </div>
+          <div class="glass-card p-6 flex-1"><span class="text-xs font-bold text-emerald-600 uppercase">Advocacy</span><h3 class="font-display font-bold text-lg mt-1">The Pharmacist’s Voice</h3><p class="text-slate-500 text-sm mt-2">Strategies for public health advocacy and medication safety.</p></div>
         </div>
-        <!-- Item 3 -->
         <div class="flex gap-6">
           <div class="w-16 h-16 rounded-2xl bg-purple-600 text-white flex items-center justify-center font-bold text-xl flex-shrink-0">III</div>
-          <div class="glass-card p-6 flex-1">
-            <span class="text-xs font-bold text-purple-600 uppercase">Workshop</span>
-            <h3 class="font-display font-bold text-lg mt-1">Research & Data</h3>
-            <p class="text-slate-500 text-sm mt-2">Training on survey tools and quality assurance for public programs.</p>
-          </div>
+          <div class="glass-card p-6 flex-1"><span class="text-xs font-bold text-purple-600 uppercase">Workshop</span><h3 class="font-display font-bold text-lg mt-1">Research & Data</h3><p class="text-slate-500 text-sm mt-2">Training on survey tools and quality assurance for public programs.</p></div>
         </div>
-        <!-- Item 4 -->
         <div class="flex gap-6">
           <div class="w-16 h-16 rounded-2xl bg-rose-600 text-white flex items-center justify-center font-bold text-xl flex-shrink-0">IV</div>
-          <div class="glass-card p-6 flex-1">
-            <span class="text-xs font-bold text-rose-600 uppercase">Dialogue</span>
-            <h3 class="font-display font-bold text-lg mt-1">Interactive Q&A</h3>
-            <p class="text-slate-500 text-sm mt-2">Open discussions and real-life case studies on health communication.</p>
-          </div>
+          <div class="glass-card p-6 flex-1"><span class="text-xs font-bold text-rose-600 uppercase">Dialogue</span><h3 class="font-display font-bold text-lg mt-1">Interactive Q&A</h3><p class="text-slate-500 text-sm mt-2">Open discussions and real-life case studies on health communication.</p></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Glimpse of Previous Symposium -->
+  <!-- Glimpse Section -->
   <section id="glimpse" class="py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
@@ -313,84 +222,38 @@
         <h2 class="font-display text-3xl font-bold mt-2">ARMS Symposium Highlights</h2>
         <p class="text-slate-500 mt-2 max-w-2xl mx-auto">A glimpse into our previous event on Antibiotic Resistance and Medication Safety held at Sunway College, Maitidevi, Kathmandu.</p>
       </div>
-
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <!-- Highlights List -->
         <div class="space-y-6">
           <div class="glimpse-card glass-card p-6 flex gap-4 items-start">
             <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center flex-shrink-0">
               <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
             </div>
-            <div>
-              <h3 class="font-bold text-slate-800 mb-1">Diverse Audience</h3>
-              <p class="text-sm text-slate-500">Brought together medical professionals, pharmacists, researchers, policymakers, and passionate students.</p>
-            </div>
+            <div><h3 class="font-bold text-slate-800 mb-1">Diverse Audience</h3><p class="text-sm text-slate-500">Brought together medical professionals, pharmacists, researchers, policymakers, and passionate students.</p></div>
           </div>
-
           <div class="glimpse-card glass-card p-6 flex gap-4 items-start">
             <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
               <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
             </div>
-            <div>
-              <h3 class="font-bold text-slate-800 mb-1">Innovative Solutions</h3>
-              <p class="text-sm text-slate-500">Esteemed speakers discussed innovative approaches to combat antimicrobial resistance.</p>
-            </div>
-          </div>
-
-          <div class="glimpse-card glass-card p-6 flex gap-4 items-start">
-            <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
-            </div>
-            <div>
-              <h3 class="font-bold text-slate-800 mb-1">Interdisciplinary Dialogue</h3>
-              <p class="text-sm text-slate-500">Focused on the role of healthcare professionals in promoting responsible antibiotic usage and collaboration.</p>
-            </div>
+            <div><h3 class="font-bold text-slate-800 mb-1">Innovative Solutions</h3><p class="text-sm text-slate-500">Esteemed speakers discussed innovative approaches to combat antimicrobial resistance.</p></div>
           </div>
         </div>
-
-        <!-- Image & Conclusion -->
         <div class="space-y-6">
            <div class="rounded-2xl overflow-hidden shadow-lg border border-slate-200 bg-slate-200 h-64 flex items-center justify-center relative">
-              <!-- Updated ARMS Image URL -->
               <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/ARMS.jpg" alt="Symposium Highlight" class="w-full h-full object-cover">
-              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent p-4">
-                 <p class="text-white text-xs font-medium">Sunway College, Maitidevi, Kathmandu</p>
-              </div>
+              <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-slate-900 to-transparent p-4"><p class="text-white text-xs font-medium">Sunway College, Maitidevi, Kathmandu</p></div>
            </div>
            <div class="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-xl">
-             <h4 class="font-bold text-emerald-800 mb-2">Key Outcome</h4>
-             <p class="text-sm text-emerald-700">The event culminated with a closing address highlighting the collective commitment to continuing the fight against antimicrobial resistance beyond the symposium.</p>
+             <h4 class="font-bold text-emerald-800 mb-2">Key Outcome</h4><p class="text-sm text-emerald-700">The event culminated with a closing address highlighting the collective commitment to continuing the fight against antimicrobial resistance beyond the symposium.</p>
            </div>
         </div>
       </div>
-
-      <!-- Testimonial -->
       <div class="max-w-3xl mx-auto bg-slate-900 text-white rounded-2xl p-8 relative overflow-hidden">
          <div class="absolute top-0 left-0 w-20 h-20 bg-sky-500 opacity-20 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
          <svg class="w-10 h-10 text-sky-400 opacity-50 mb-4" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-         <p class="text-lg font-medium text-slate-200 mb-6">
-            "The symposium was an eye-opener, highlighting the urgency and need for concerted efforts in combating antibiotic resistance. It was inspiring to see such dedication from healthcare professionals and students alike."
-         </p>
-         <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center font-bold">A</div>
-            <div>
-               <p class="font-bold text-white">Mr. Samir Sapkota</p>
-               <p class="text-sm text-slate-400">ARMS Symposium Attendee</p>
-            </div>
-         </div>
+         <p class="text-lg font-medium text-slate-200 mb-6">"The symposium was an eye-opener, highlighting the urgency and need for concerted efforts in combating antibiotic resistance. It was inspiring to see such dedication from healthcare professionals and students alike."</p>
+         <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center font-bold">A</div><div><p class="font-bold text-white">Participant Testimonial</p><p class="text-sm text-slate-400">ARMS Symposium Attendee</p></div></div>
       </div>
     </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="py-16 px-4 bg-slate-50 border-t border-slate-100">
-     <div class="max-w-3xl mx-auto text-center">
-        <h2 class="font-display text-2xl font-bold mb-4">Ready to Join the Next Chapter?</h2>
-        <p class="text-slate-500 mb-8">Don't miss the opportunity to be part of the change. Register now for the Pharmacy in Health Policy Symposium.</p>
-        <a href="#register" class="btn-primary text-lg px-8 py-4">
-           Register Today
-        </a>
-     </div>
   </section>
 
   <!-- Registration Section -->
@@ -407,134 +270,61 @@
           <div class="absolute top-4 left-0 right-0 h-1 bg-slate-200 -z-1"></div>
           <div class="absolute top-4 left-0 h-1 bg-sky-600 -z-1 transition-all duration-500" style="width: 0%" id="progress-line"></div>
           
-          <div class="step-indicator flex flex-col items-center z-10" data-step="1">
-            <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step active">1</div>
-            <span class="text-xs mt-2 text-slate-600 hidden sm:block">Personal</span>
-          </div>
-          <div class="step-indicator flex flex-col items-center z-10" data-step="2">
-            <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step">2</div>
-            <span class="text-xs mt-2 text-slate-600 hidden sm:block">Academic</span>
-          </div>
-          <div class="step-indicator flex flex-col items-center z-10" data-step="3">
-            <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step">3</div>
-            <span class="text-xs mt-2 text-slate-600 hidden sm:block">Emergency</span>
-          </div>
-          <div class="step-indicator flex flex-col items-center z-10" data-step="4">
-            <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step">4</div>
-            <span class="text-xs mt-2 text-slate-600 hidden sm:block">Payment</span>
-          </div>
+          <div class="step-indicator flex flex-col items-center z-10" data-step="1"><div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step active">1</div><span class="text-xs mt-2 text-slate-600 hidden sm:block">Personal</span></div>
+          <div class="step-indicator flex flex-col items-center z-10" data-step="2"><div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step">2</div><span class="text-xs mt-2 text-slate-600 hidden sm:block">Academic</span></div>
+          <div class="step-indicator flex flex-col items-center z-10" data-step="3"><div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step">3</div><span class="text-xs mt-2 text-slate-600 hidden sm:block">Emergency</span></div>
+          <div class="step-indicator flex flex-col items-center z-10" data-step="4"><div class="w-8 h-8 rounded-full bg-slate-200 text-slate-600 flex items-center justify-center font-bold text-sm progress-step">4</div><span class="text-xs mt-2 text-slate-600 hidden sm:block">Payment</span></div>
         </div>
 
         <form id="registrationForm" onsubmit="return false;">
           
-          <!-- STEP 1: Personal Details -->
+          <!-- STEP 1 -->
           <div class="form-step active" id="step-1">
             <h3 class="font-display text-xl font-bold mb-6">Personal Details</h3>
             <div class="space-y-4">
-              <div>
-                <label>Full Name *</label>
-                <input type="text" name="fullName" class="form-input" placeholder="Your full name" required />
+              <div><label>Full Name *</label><input type="text" name="fullName" class="form-input" placeholder="Your full name" required /></div>
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div><label>Contact Number *</label><input type="tel" name="phone" class="form-input" placeholder="+977..." required /></div>
+                <div><label>Email Address *</label><input type="email" name="email" class="form-input" placeholder="you@example.com" required /></div>
               </div>
               <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label>Contact Number *</label>
-                  <input type="tel" name="phone" class="form-input" placeholder="+977..." required />
-                </div>
-                <div>
-                  <label>Email Address *</label>
-                  <input type="email" name="email" class="form-input" placeholder="you@example.com" required />
-                </div>
-              </div>
-              <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label>Date of Birth *</label>
-                  <input type="date" name="dob" class="form-input" required />
-                </div>
-                <div>
-                  <label>Gender *</label>
-                  <select name="gender" class="form-input" required>
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
+                <div><label>Date of Birth *</label><input type="date" name="dob" class="form-input" required /></div>
+                <div><label>Gender *</label><select name="gender" class="form-input" required><option value="">Select Gender</option><option value="Male">Male</option><option value="Female">Female</option><option value="Other">Other</option></select></div>
               </div>
             </div>
           </div>
 
-          <!-- STEP 2: Academic Details -->
+          <!-- STEP 2 -->
           <div class="form-step" id="step-2">
             <h3 class="font-display text-xl font-bold mb-6">Academic Details</h3>
             <div class="space-y-4">
               <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label>University *</label>
-                  <input type="text" name="university" class="form-input" placeholder="e.g., Purbanchal University" required />
-                </div>
-                <div>
-                  <label>College Name *</label>
-                  <input type="text" name="college" class="form-input" placeholder="Your college name" required />
-                </div>
+                <div><label>University *</label><input type="text" name="university" class="form-input" placeholder="e.g., Purbanchal University" required /></div>
+                <div><label>College Name *</label><input type="text" name="college" class="form-input" placeholder="Your college name" required /></div>
               </div>
-              <div>
-                <label>Faculty *</label>
-                <select name="faculty" class="form-input" required>
-                  <option value="">Select Faculty</option>
-                  <option value="Pharmacy">Pharmacy</option>
-                  <option value="Public Health">Public Health</option>
-                  <option value="Nursing">Nursing</option>
-                  <option value="MBBS">MBBS</option>
-                  <option value="BDS">BDS</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
+              <div><label>Faculty *</label><select name="faculty" class="form-input" required><option value="">Select Faculty</option><option value="Pharmacy">Pharmacy</option><option value="Public Health">Public Health</option><option value="Nursing">Nursing</option><option value="MBBS">MBBS</option><option value="BDS">BDS</option><option value="Other">Other</option></select></div>
               <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label>Year of Joining *</label>
-                  <input type="text" name="joiningYear" class="form-input" placeholder="e.g., 2022" required />
-                </div>
-                <div>
-                  <label>Passed out Year (if graduated)</label>
-                  <input type="text" name="passedYear" class="form-input" placeholder="e.g., 2024" />
-                </div>
+                <div><label>Year of Joining *</label><input type="text" name="joiningYear" class="form-input" placeholder="e.g., 2022" required /></div>
+                <div><label>Passed out Year (if graduated)</label><input type="text" name="passedYear" class="form-input" placeholder="e.g., 2024" /></div>
               </div>
             </div>
           </div>
 
-          <!-- STEP 3: Emergency Contact -->
+          <!-- STEP 3 -->
           <div class="form-step" id="step-3">
             <h3 class="font-display text-xl font-bold mb-6">Emergency Contact</h3>
             <div class="space-y-4">
-              <div>
-                <label>Name of Emergency Contact Person *</label>
-                <input type="text" name="emergencyName" class="form-input" required />
-              </div>
+              <div><label>Name of Emergency Contact Person *</label><input type="text" name="emergencyName" class="form-input" required /></div>
               <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label>Relation to Attendee *</label>
-                  <select name="emergencyRelation" class="form-input" required>
-                    <option value="">Select Relation</option>
-                    <option value="Father">Father</option>
-                    <option value="Mother">Mother</option>
-                    <option value="Sister">Sister</option>
-                    <option value="Brother">Brother</option>
-                    <option value="Friend">Friend attending event</option>
-                  </select>
-                </div>
-                <div>
-                  <label>Contact No. *</label>
-                  <input type="tel" name="emergencyPhone" class="form-input" required />
-                </div>
+                <div><label>Relation to Attendee *</label><select name="emergencyRelation" class="form-input" required><option value="">Select Relation</option><option value="Father">Father</option><option value="Mother">Mother</option><option value="Sister">Sister</option><option value="Brother">Brother</option><option value="Friend">Friend attending event</option></select></div>
+                <div><label>Contact No. *</label><input type="tel" name="emergencyPhone" class="form-input" required /></div>
               </div>
             </div>
           </div>
 
-          <!-- STEP 4: Payment Details -->
+          <!-- STEP 4 -->
           <div class="form-step" id="step-4">
             <h3 class="font-display text-xl font-bold mb-6">Payment Details</h3>
-            
-            <!-- Payment Info -->
             <div class="bg-slate-50 rounded-xl p-5 mb-6 text-sm border border-slate-200">
               <div class="flex flex-col md:flex-row gap-6">
                  <div class="flex-1">
@@ -543,44 +333,27 @@
                     <p class="text-slate-600"><strong>Bank:</strong> Nabil Bank<br/>A/c: 09810017526638<br/><span class="text-xs">(Manish Thapaliya)</span></p>
                  </div>
                  <div class="flex-shrink-0 text-center">
-                    <!-- Updated QR Code URL -->
                     <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/QR.jpeg" alt="Payment QR" class="w-32 h-32 object-contain rounded-lg mx-auto border shadow-sm">
                  </div>
               </div>
               <p class="text-xs text-rose-600 mt-4 font-medium">* Amount paid is non-refundable.</p>
             </div>
-
             <div class="space-y-4">
               <div class="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label>Reference Code (from voucher) *</label>
-                  <input type="text" name="refCode" class="form-input" placeholder="Transaction ID" required />
-                </div>
-                <div>
-                  <label>Payment Medium *</label>
-                  <select name="paymentMethod" class="form-input" required>
-                    <option value="">Select Medium</option>
-                    <option value="Esewa">E-sewa</option>
-                    <option value="Khalti">Khalti</option>
-                    <option value="Nabil Bank">Nabil Bank</option>
-                  </select>
-                </div>
+                <div><label>Reference Code (from voucher) *</label><input type="text" name="refCode" class="form-input" placeholder="Transaction ID" required /></div>
+                <div><label>Payment Medium *</label><select name="paymentMethod" class="form-input" required><option value="">Select Medium</option><option value="Esewa">E-sewa</option><option value="Khalti">Khalti</option><option value="Nabil Bank">Nabil Bank</option></select></div>
               </div>
               <div>
                  <label>Where are you sending your Voucher? *</label>
                  <div class="flex gap-4 mt-2">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                       <input type="radio" name="voucherPlatform" value="Whatsapp" class="accent-sky-600" required checked> Whatsapp
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                       <input type="radio" name="voucherPlatform" value="Viber" class="accent-sky-600"> Viber
-                    </label>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="voucherPlatform" value="Whatsapp" class="accent-sky-600" required checked> Whatsapp</label>
+                    <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="voucherPlatform" value="Viber" class="accent-sky-600"> Viber</label>
                  </div>
               </div>
             </div>
           </div>
 
-          <!-- Navigation Buttons -->
+          <!-- Buttons -->
           <div class="flex justify-between mt-8 pt-6 border-t border-slate-100">
             <button type="button" id="prevBtn" class="btn-ghost hidden" onclick="nextPrev(-1)">Previous</button>
             <button type="button" id="nextBtn" class="btn-primary ml-auto" onclick="nextPrev(1)">Next Step</button>
@@ -615,14 +388,12 @@
     <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
       <div>
         <div class="flex items-center gap-3 mb-4">
-             <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/CPREC%20Nepal.png" alt="CPREC Logo" class="h-10 w-auto brightness-200"> <!-- Brightness for visibility on dark bg -->
+             <img src="https://raw.githubusercontent.com/cprec-nepal/logo/main/CPREC%20Nepal.png" alt="CPREC Logo" class="h-10 w-auto brightness-200">
         </div>
-        <p class="text-slate-400 text-sm leading-relaxed mb-6">
-          A youth-led, non-partisan organization with a proven track record of impact in health policy and leadership.
-        </p>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">A youth-led, non-partisan organization with a proven track record of impact in health policy and leadership.</p>
         <div class="text-slate-400 text-sm">
           <p class="mb-1"><strong class="text-white">Contact:</strong> Manish Thapaliya, President</p>
-          <p class="mb-1"><strong class="text-white">Email:</strong> manish.thapaliya@cprecnepal.org.np</p>
+          <p class="mb-1"><strong class="text-white">Email:</strong> info@cprecnepal.org.np</p>
           <p><strong class="text-white">Mobile:</strong> +977-9803369377</p>
         </div>
       </div>
@@ -636,20 +407,14 @@
         </div>
       </div>
     </div>
-    <div class="max-w-5xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
-      &copy; 2024 CPREC Nepal. All rights reserved.
-    </div>
+    <div class="max-w-5xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-xs text-slate-500">&copy; 2024 CPREC Nepal. All rights reserved.</div>
   </footer>
 
   <script>
-    // ==========================================
-    // CONFIGURATION
-    // ==========================================
+    // ========== CONFIGURATION ==========
     const API_URL = "https://script.google.com/macros/s/AKfycbwBp8tXJVHYTsGZRfMcnt8LNOigLZ_HScLdXDxnIpUowx9ddVrEyhoUyp5ud6CMlfssww/exec";
 
-    // ==========================================
-    // MULTI-STEP FORM LOGIC
-    // ==========================================
+    // ========== MULTI-STEP FORM LOGIC ==========
     let currentStep = 0;
     const steps = document.querySelectorAll('.form-step');
     const progressSteps = document.querySelectorAll('.progress-step');
@@ -660,7 +425,6 @@
     function updateProgressBar() {
       const percent = (currentStep / (steps.length - 1)) * 100;
       progressLine.style.width = percent + '%';
-      
       progressSteps.forEach((step, idx) => {
         step.classList.remove('active', 'completed');
         if(idx < currentStep) step.classList.add('completed');
@@ -669,44 +433,28 @@
     }
 
     function nextPrev(n) {
-      // Validation before moving next
       if (n === 1) {
         const currentInputs = steps[currentStep].querySelectorAll('input[required], select[required]');
         let valid = true;
         currentInputs.forEach(input => {
-          if (!input.value) {
-            input.style.borderColor = '#ef4444'; // Red border for error
-            valid = false;
-          } else {
-            input.style.borderColor = ''; // Reset
-          }
+          if (!input.value) { input.style.borderColor = '#ef4444'; valid = false; } 
+          else { input.style.borderColor = ''; }
         });
-        if (!valid) {
-          alert("Please fill in all required fields.");
-          return;
-        }
+        if (!valid) { alert("Please fill in all required fields."); return; }
       }
 
       steps[currentStep].classList.remove('active');
       currentStep += n;
       
-      if (currentStep >= steps.length) {
-        // Form Complete - Submit Data
-        submitForm();
-        return;
-      }
+      if (currentStep >= steps.length) { submitForm(); return; }
       
       steps[currentStep].classList.add('active');
       updateProgressBar();
-      
-      // Toggle buttons
       prevBtn.classList.toggle('hidden', currentStep === 0);
       nextBtn.textContent = currentStep === steps.length - 1 ? "Submit Registration" : "Next Step";
     }
 
-    // ==========================================
-    // FORM SUBMISSION
-    // ==========================================
+    // ========== FORM SUBMISSION ==========
     function submitForm() {
       const form = document.getElementById('registrationForm');
       const formData = new FormData(form);
@@ -716,32 +464,19 @@
       nextBtn.disabled = true;
       nextBtn.textContent = "Submitting...";
 
-      // Send data to server
       fetch(API_URL, {
         method: 'POST',
         body: JSON.stringify({ type: 'registerSymposium', data: data })
       })
       .then(res => res.json())
       .then(res => {
-        if(res.success) {
-           document.getElementById('uploadModal').classList.remove('hidden');
-        } else {
-           alert("Error: " + res.message);
-           nextBtn.disabled = false;
-           nextBtn.textContent = "Submit Registration";
-        }
+        if(res.success) { document.getElementById('uploadModal').classList.remove('hidden'); } 
+        else { alert("Error: " + res.message); nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; }
       })
-      .catch(err => {
-        console.error(err);
-        alert("Network Error. Check console for details.");
-        nextBtn.disabled = false;
-        nextBtn.textContent = "Submit Registration";
-      });
+      .catch(err => { console.error(err); alert("Network Error. Check console."); nextBtn.disabled = false; nextBtn.textContent = "Submit Registration"; });
     }
 
-    // ==========================================
-    // FILE UPLOAD LOGIC
-    // ==========================================
+    // ========== FILE UPLOAD LOGIC ==========
     let selectedFile = null;
     document.getElementById('fileInput').addEventListener('change', function(e) {
       selectedFile = e.target.files[0];
@@ -754,11 +489,9 @@
 
     document.getElementById('uploadBtn').addEventListener('click', async function() {
       if(!selectedFile) return;
-      
       this.textContent = "Uploading...";
       this.disabled = true;
       
-      // Resize & Upload Logic
       const reader = new FileReader();
       reader.onload = async (e) => {
         const img = new Image();
@@ -772,23 +505,27 @@
            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
            const base64 = canvas.toDataURL('image/jpeg', 0.7).split(',')[1];
            
-           // Send to Google Drive
            const formData = new FormData();
            formData.append('type', 'uploadVoucher');
            formData.append('email', document.querySelector('input[name="email"]').value);
            formData.append('base64Data', base64);
            formData.append('mimeType', 'image/jpeg');
            
-           const res = await fetch(API_URL, { method: 'POST', body: formData });
-           const result = await res.json();
-           
-           if(result.success) {
-              alert("Voucher uploaded successfully!");
-              document.getElementById('uploadModal').classList.add('hidden');
-           } else {
-              alert("Upload failed. Please try again.");
-              this.textContent = "Upload & Finish";
-              this.disabled = false;
+           try {
+             const res = await fetch(API_URL, { method: 'POST', body: formData });
+             const result = await res.json();
+             if(result.success) {
+               alert("Voucher uploaded successfully!");
+               document.getElementById('uploadModal').classList.add('hidden');
+             } else {
+               alert("Upload failed: " + (result.message || "Unknown error"));
+               this.textContent = "Upload & Finish";
+               this.disabled = false;
+             }
+           } catch (error) {
+             alert("Connection error during upload.");
+             this.textContent = "Upload & Finish";
+             this.disabled = false;
            }
         };
         img.src = e.target.result;
@@ -796,7 +533,6 @@
       reader.readAsDataURL(selectedFile);
     });
 
-    // Initialize
     updateProgressBar();
   </script>
 </body>
