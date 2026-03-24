@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Pharmacy in Health Policy Symposium | CPREC Nepal</title>
-  <meta name="description" content="Empowering Future Leaders for Evidence-Based Change. Join the symposium organized by CPREC Nepal.">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,92 +24,41 @@
   
   <style>
     :root {
-      --bg: #0f172a;
-      --bg-light: #f8fafc;
-      --fg: #f8fafc;
-      --fg-dark: #0f172a;
-      --accent: #0ea5e9;
-      --accent-dark: #0284c7;
-      --secondary: #8b5cf6;
+      --bg: #0f172a; --bg-light: #f8fafc; --fg: #f8fafc; --fg-dark: #0f172a;
+      --accent: #0ea5e9; --accent-dark: #0284c7; --secondary: #8b5cf6;
       --card: rgba(255, 255, 255, 0.95);
     }
-
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', sans-serif; background: var(--bg-light); color: var(--fg-dark); overflow-x: hidden; }
-
-    .hero-gradient {
-      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-      position: relative;
-      overflow: hidden;
-    }
+    .hero-gradient { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); position: relative; overflow: hidden; }
     .hero-gradient::before {
       content: ''; position: absolute; inset: 0;
       background: radial-gradient(circle at 20% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 50%),
                   radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
       z-index: 0;
     }
-
-    .glass-card {
-      background: var(--card); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.2);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
-      border-radius: 24px;
-    }
-
-    .form-input {
-      width: 100%; padding: 0.875rem 1rem;
-      background: rgba(15, 23, 42, 0.04);
-      border: 2px solid rgba(15, 23, 42, 0.1);
-      border-radius: 12px; font-size: 0.95rem; color: var(--fg-dark);
-      transition: all 0.2s;
-    }
+    .glass-card { background: var(--card); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1); border-radius: 24px; }
+    .form-input { width: 100%; padding: 0.875rem 1rem; background: rgba(15, 23, 42, 0.04); border: 2px solid rgba(15, 23, 42, 0.1); border-radius: 12px; font-size: 0.95rem; color: var(--fg-dark); transition: all 0.2s; }
     .form-input:focus { outline: none; border-color: var(--accent); background: #fff; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1); }
     label { display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.5rem; color: #475569; }
-    
-    .btn-primary {
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-      padding: 1rem 2rem;
-      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
-      color: white; font-family: 'Space Grotesk', sans-serif; font-weight: 600;
-      border-radius: 12px; border: none; cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+    .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 1rem 2rem; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%); color: white; font-family: 'Space Grotesk', sans-serif; font-weight: 600; border-radius: 12px; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(14, 165, 233, 0.25); }
-    
     .btn-secondary { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.3); padding: 1rem 2rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
     .btn-secondary:hover { background: rgba(255,255,255,0.1); }
-
     .btn-ghost { background: transparent; color: var(--fg-dark); border: 2px solid rgba(15, 23, 42, 0.1); padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
     .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
-
     .form-step { display: none; animation: fadeIn 0.4s ease; }
     .form-step.active { display: block; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
     .progress-step { transition: all 0.3s; }
     .progress-step.active { background: var(--accent); color: white; }
     .progress-step.completed { background: #10b981; color: white; }
-
     .glimpse-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .glimpse-card:hover { transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
     .hidden { display: none !important; }
-    
-    /* Phone Input & Validation Styles */
     .phone-wrapper { display: flex; align-items: stretch; }
-    .phone-prefix {
-      background: rgba(15, 23, 42, 0.08); 
-      border: 2px solid rgba(15, 23, 42, 0.1); 
-      border-right: none;
-      border-radius: 12px 0 0 12px;
-      padding: 0.875rem 1rem;
-      display: flex;
-      align-items: center;
-      font-weight: 600;
-      color: #64748b;
-      user-select: none;
-    }
+    .phone-prefix { background: rgba(15, 23, 42, 0.08); border: 2px solid rgba(15, 23, 42, 0.1); border-right: none; border-radius: 12px 0 0 12px; padding: 0.875rem 1rem; display: flex; align-items: center; font-weight: 600; color: #64748b; user-select: none; }
     .phone-wrapper input { border-radius: 0 12px 12px 0; border-left: none; }
-    
     .form-input.error { border-color: #ef4444 !important; background-color: rgba(254, 226, 226, 0.2) !important; }
     .phone-prefix.error { border-color: #ef4444 !important; background-color: rgba(254, 226, 226, 0.4) !important; }
     .error-msg { color: #dc2626; font-size: 0.8rem; margin-top: 0.25rem; display: none; font-weight: 500; }
@@ -136,20 +84,11 @@
   <!-- Hero Section -->
   <header id="top" class="hero-gradient text-white pt-32 pb-20 px-4 relative">
     <div class="max-w-5xl mx-auto text-center relative z-10">
-      <span class="inline-block px-4 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
-        One-Day Symposium
-      </span>
-      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">
-        Pharmacy in Health Policy<br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">Symposium</span>
-      </h1>
-      <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed">
-        Empowering Future Leaders for Evidence-Based Change. Bridging the gap between academic pharmacy education and real-world policy impact.
-      </p>
+      <span class="inline-block px-4 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">One-Day Symposium</span>
+      <h1 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold mb-6 leading-tight">Pharmacy in Health Policy<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 to-emerald-400">Symposium</span></h1>
+      <p class="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed">Empowering Future Leaders for Evidence-Based Change. Bridging the gap between academic pharmacy education and real-world policy impact.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#register" class="btn-primary text-lg px-8 py-4 bg-white text-slate-900 hover:bg-slate-100" style="background: white; color: #0f172a;">
-          Register Now
-        </a>
+        <a href="#register" class="btn-primary text-lg px-8 py-4 bg-white text-slate-900 hover:bg-slate-100" style="background: white; color: #0f172a;">Register Now</a>
         <a href="#about" class="btn-secondary">Learn More</a>
       </div>
     </div>
@@ -172,32 +111,22 @@
         <div>
           <span class="text-sky-600 font-bold text-sm uppercase tracking-widest">The Challenge</span>
           <h2 class="font-display text-3xl font-bold mt-2 mb-6">Why This Matters</h2>
-          <p class="text-slate-600 leading-relaxed mb-4">
-            Despite the critical role pharmacists play in public health, significant gaps remain in their involvement in preventive health practices and national policy management.
-          </p>
-          <p class="text-slate-600 leading-relaxed">
-            There is an urgent need to empower young professionals to lead social change across the health and governance sectors.
-          </p>
+          <p class="text-slate-600 leading-relaxed mb-4">Despite the critical role pharmacists play in public health, significant gaps remain in their involvement in preventive health practices and national policy management.</p>
+          <p class="text-slate-600 leading-relaxed">There is an urgent need to empower young professionals to lead social change across the health and governance sectors.</p>
         </div>
         <div class="glass-card p-8">
           <h3 class="font-display text-xl font-bold mb-6">Key Objectives</h3>
           <div class="space-y-4">
             <div class="flex gap-4">
-              <div class="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600 flex-shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-              </div>
+              <div class="w-10 h-10 rounded-lg bg-sky-100 flex items-center justify-center text-sky-600 flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
               <div><h4 class="font-bold text-slate-800">Promote Youth Leadership</h4><p class="text-sm text-slate-500">Empower students to move into policymaking.</p></div>
             </div>
             <div class="flex gap-4">
-              <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg>
-              </div>
+              <div class="w-10 h-10 rounded-lg bg-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/></svg></div>
               <div><h4 class="font-bold text-slate-800">Enhance Advocacy Skills</h4><p class="text-sm text-slate-500">Educate on antibiotic resistance & medication safety.</p></div>
             </div>
             <div class="flex gap-4">
-              <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
-              </div>
+              <div class="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div>
               <div><h4 class="font-bold text-slate-800">Build Research Capacity</h4><p class="text-sm text-slate-500">Training in Methodology and Data Analysis.</p></div>
             </div>
           </div>
@@ -245,15 +174,11 @@
       <div class="grid md:grid-cols-2 gap-8 mb-12">
         <div class="space-y-6">
           <div class="glimpse-card glass-card p-6 flex gap-4 items-start">
-            <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
-            </div>
+            <div class="w-12 h-12 rounded-full bg-sky-100 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-sky-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg></div>
             <div><h3 class="font-bold text-slate-800 mb-1">Diverse Audience</h3><p class="text-sm text-slate-500">Brought together medical professionals, pharmacists, researchers, policymakers, and passionate students.</p></div>
           </div>
           <div class="glimpse-card glass-card p-6 flex gap-4 items-start">
-            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-              <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-            </div>
+            <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0"><svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg></div>
             <div><h3 class="font-bold text-slate-800 mb-1">Innovative Solutions</h3><p class="text-sm text-slate-500">Esteemed speakers discussed innovative approaches to combat antimicrobial resistance.</p></div>
           </div>
         </div>
@@ -302,8 +227,6 @@
             <h3 class="font-display text-xl font-bold mb-6">Personal Details</h3>
             <div class="space-y-4">
               <div><label>Full Name *</label><input type="text" name="fullName" class="form-input" placeholder="Your full name" required /></div>
-              
-              <!-- Phone Input with +977 -->
               <div>
                 <label>Contact Number *</label>
                 <div class="phone-wrapper">
@@ -312,9 +235,7 @@
                 </div>
                 <p class="error-msg" id="phone-error">Must be 10 digits starting with 9.</p>
               </div>
-              
               <div><label>Email Address *</label><input type="email" name="email" class="form-input" placeholder="you@example.com" required /></div>
-              
               <div class="grid grid-cols-2 gap-4">
                 <div>
                   <label>Date of Birth *</label>
@@ -347,8 +268,6 @@
             <h3 class="font-display text-xl font-bold mb-6">Emergency Contact</h3>
             <div class="space-y-4">
               <div><label>Emergency Contact Name *</label><input type="text" name="emergencyName" class="form-input" required /></div>
-              
-              <!-- Emergency Phone Input -->
               <div>
                 <label>Emergency Contact No. *</label>
                 <div class="phone-wrapper">
@@ -357,7 +276,6 @@
                 </div>
                 <p class="error-msg" id="emergency-phone-error">Must be 10 digits starting with 9.</p>
               </div>
-              
               <div><label>Relation *</label><select name="emergencyRelation" class="form-input" required><option value="">Select Relation</option><option value="Father">Father</option><option value="Mother">Mother</option><option value="Brother">Brother</option><option value="Sister">Sister</option><option value="Friend">Friend</option></select></div>
             </div>
           </div>
@@ -446,8 +364,12 @@
   </footer>
 
   <script>
-    const API_URL = "https://script.google.com/macros/s/AKfycbwBp8tXJVHYTsGZRfMcnt8LNOigLZ_HScLdXDxnIpUowx9ddVrEyhoUyp5ud6CMlfssww/exec";
-    
+    // ==================================================
+    // IMPORTANT: REPLACE THE URL BELOW WITH YOUR DEPLOYED WEB APP URL
+    // ==================================================
+    const API_URL = "https://script.google.com/macros/s/AKfycbyHOYEFy6dHNwLbJMxovOmr7SpnLnit9DcFP0PsiuI1Fk4Avpl-U6KJGIYI7mhMOcuIJw/exec";
+    // ==================================================
+
     let currentStep = 0;
     const steps = document.querySelectorAll('.form-step');
     const progressSteps = document.querySelectorAll('.progress-step');
@@ -465,22 +387,19 @@
       });
     }
 
-    // ===== IMPROVED VALIDATION FUNCTION =====
     function validateStep(stepIndex) {
       const container = steps[stepIndex];
       let valid = true;
 
-      // 1. Reset all errors in this step
+      // Reset errors
       container.querySelectorAll('.form-input').forEach(input => input.classList.remove('error'));
       container.querySelectorAll('.phone-prefix').forEach(prefix => prefix.classList.remove('error'));
       container.querySelectorAll('.error-msg').forEach(msg => msg.style.display = 'none');
 
-      // 2. Check Required Fields
       const inputs = container.querySelectorAll('input[required], select[required]');
       inputs.forEach(input => {
         if (!input.value.trim()) {
           input.classList.add('error');
-          // Highlight prefix if phone is empty
           if(input.name === 'phone' || input.name === 'emergencyPhone') {
              const wrapper = input.closest('.phone-wrapper');
              if(wrapper) wrapper.querySelector('.phone-prefix').classList.add('error');
@@ -489,7 +408,7 @@
         }
       });
 
-      // 3. Specific Validation: Phone Numbers (Step 1 & 3)
+      // Phone Validation
       if (stepIndex === 0 || stepIndex === 2) {
         const phoneInput = container.querySelector('input[name="phone"], input[name="emergencyPhone"]');
         if (phoneInput && phoneInput.value) {
@@ -498,54 +417,38 @@
           const errEl = document.getElementById(errId);
           const prefix = phoneInput.closest('.phone-wrapper').querySelector('.phone-prefix');
           
-          // Check: Must be 10 digits AND start with 9 (Nepal Mobile)
-          if (digits.length !== 10) {
+          if (digits.length !== 10 || digits.charAt(0) !== '9') {
             phoneInput.classList.add('error');
             prefix.classList.add('error');
-            if(errEl) { errEl.textContent = "Must be exactly 10 digits."; errEl.style.display = 'block'; }
-            valid = false;
-          } else if (digits.charAt(0) !== '9') {
-            phoneInput.classList.add('error');
-            prefix.classList.add('error');
-            if(errEl) { errEl.textContent = "Nepal mobile numbers start with 9."; errEl.style.display = 'block'; }
+            if(errEl) { errEl.style.display = 'block'; }
             valid = false;
           } else {
-            phoneInput.value = digits; // Clean value
+            phoneInput.value = digits; 
           }
         }
       }
 
-      // 4. Specific Validation: Date of Birth (Step 1)
+      // DOB Validation
       if (stepIndex === 0) {
         const dobInput = container.querySelector('input[name="dob"]');
         if (dobInput && dobInput.value) {
           const dob = new Date(dobInput.value);
           const today = new Date();
-          today.setHours(0,0,0,0); // Compare dates only
-          
+          today.setHours(0,0,0,0); 
           const errEl = document.getElementById('dob-error');
-
-          if (isNaN(dob.getTime())) {
+          if (isNaN(dob.getTime()) || dob >= today) {
              dobInput.classList.add('error');
-             if(errEl) { errEl.textContent = "Invalid date format."; errEl.style.display = 'block'; }
-             valid = false;
-          }
-          else if (dob >= today) {
-             dobInput.classList.add('error');
-             if(errEl) { errEl.textContent = "Date must be in the past."; errEl.style.display = 'block'; }
+             if(errEl) { errEl.style.display = 'block'; }
              valid = false;
           }
         }
       }
 
-      if (!valid) {
-        alert("Please correct the highlighted fields.");
-      }
+      if (!valid) alert("Please correct the highlighted fields.");
       return valid;
     }
 
     function nextPrev(n) {
-      // Validate only when moving Next
       if (n === 1 && !validateStep(currentStep)) return;
 
       steps[currentStep].classList.remove('active');
@@ -565,12 +468,18 @@
       const data = {};
       formData.forEach((value, key) => data[key] = value);
       
-      // Append +977 to phones for backend
       data.phone = "+977" + data.phone;
       data.emergencyPhone = "+977" + data.emergencyPhone;
 
       nextBtn.disabled = true;
       nextBtn.textContent = "Submitting...";
+
+      if(API_URL.includes("YOUR_DEPLOYED_WEB_APP_URL_HERE")) {
+        alert("ERROR: You must update the API_URL in the HTML code with your deployed Script URL.");
+        nextBtn.disabled = false;
+        nextBtn.textContent = "Submit Registration";
+        return;
+      }
 
       fetch(API_URL, {
         method: 'POST',
@@ -627,6 +536,7 @@
              if(result.success) {
                alert("Upload successful!");
                document.getElementById('uploadModal').classList.add('hidden');
+               window.location.reload(); // Refresh form
              } else {
                alert("Error: " + (result.message || "Failed"));
                this.textContent = "Upload & Finish";
